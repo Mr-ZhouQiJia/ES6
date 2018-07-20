@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组的扩展</title>
+</head>
+<body>
+    <script>
+        //1.扩展运算符
+
+        // 扩展运算符是三个点（...） 。 它好比rest参数的逆运算，将一个数组转为用逗号分隔的参数序列
+        console.log(...[1,2,3]);    // 1 2 3
+        console.log(1,...[2,3,4],5);  // 1 2 3 4 5
+        [...document.querySelectorAll('div')]
+
+        function push(array,...items) {
+            array.push(...items);
+        }
+
+        //数组拼接
+        let arr1 = [1,2,3];
+        let arr2 = [4,5,6];
+        arr1.push(...arr2);
+        console.log(arr1);
+        
+        //扩展运算符的应用 : 
+        // a. 复制数组
+        const a1 = [1,2];
+        const a2 = a1;     // a2 并不是 a1的克隆，而是指向同一数据的另一个指针；修改a2，a1也会改变
+        console.log(a2);  //[1,2]
+        a2[0] = 2;
+        console.log(a1);    //[2,2]
+        
+        const a3 = [...a1];  // a3 是a1的克隆，修改a3不会改变a1；
+        a3[1] = 5;
+        console.log(a1); //  [2,2]
+        
+        
+        // b. 将字符串转为数组
+        console.log([...'hello']);
+        [...'hello']  // ["h","e","l","l","o"]
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </script>
+
+
+
+</body>
+</html>

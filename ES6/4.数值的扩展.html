@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数值的扩展</title>
+</head>
+<body>
+    <script>
+        //1. 二进制和八进制表示法
+        /*
+            *
+            *
+            * ES6 提供了二进制和八进制数值的新的写法，分别用前缀0b（或0B）和0o（或0O）表示。
+         */
+        0o767 === 503;
+        0b111110111 === 503;
+
+        (function () {
+            console.log(0o11 === 011);
+        })(); // 不报错
+
+        (function () {
+           // 'use strict'; // 严格模式
+            console.log(0o11 === 011);
+        })();  // 报错
+
+        //2. 使用Number()方法 将0o和0b前缀的字符串数值转为十进制
+        Number('0o111');
+        console.log(Number('0o111'));
+
+        //3. Number.isFinite() 用来检查一个数值是否为有限的（finate） ,  Number.isNaN() 用于检查一个数值是否为NaN
+
+        Number.isFinite(15);  //true;
+        Number.isFinite(0.8); //true;
+        Number.isFinite(NaN); //false;
+        Number.isFinite('abc') ;//false
+
+        // 如果参数类型不是数值类型，一律返回false
+
+        //4. Number.parseInt(), Number.parseFloat()
+
+        //5. Number.isInteger() 用来判断一个数值是否为整数。JavaScript 内部，整数和浮点数采用的是同样的储存方法，所以 25 和 25.0 被视为同一个值。
+
+        // 6.  指数运算符
+        2 ** 2;
+        console.log(2 ** 8);
+
+        let a = 10;
+        a **= 2; //   a = a * a;
+        a **= 3 ; //  a = a * a * a;
+        console.log(a);
+
+
+
+
+
+
+
+
+
+    </script>
+
+
+
+</body>
+</html>

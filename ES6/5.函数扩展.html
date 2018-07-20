@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数扩展</title>
+</head>
+<body>
+    <script>
+        //1. 函数参数的默认值
+
+        //  ES6允许为函数的参数设置默认值
+
+        function log(x , y = 'world') {
+            console.log(x,y);
+        }
+        log(5,6);       //  5,6
+        log('hello');   //  hello world
+        log('hello','');//  hello
+
+        //2. 参数默认值的位置
+
+       // 通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。
+
+
+
+        //3.函数的length属性
+
+        // 指定了默认值以后，函数的length属性，将返回没有指定默认值得参数个数。也就是说，指定了默认值后，length属性将失真
+
+        (function (a) {
+
+        }).length;  // 1
+
+        (function (b = 5) {
+
+        }).length; //0
+
+        (function (a , b ,c = 5) {
+
+        }).length; // 2
+
+
+        //4. rest 参数
+        // ...变量名     ： 一个数组，可以将多个参数放入数组中
+
+        function add(...values) {
+            let sum = 0;
+            for (var val of values) {
+                sum += val;
+            }
+            console.log(sum);
+            return sum;
+
+        }
+
+        add(5,4,5,6);
+
+
+        // warning :   rest参数只能是最后一个参数 ， 否则会报错
+
+
+        //5. 箭头函数
+
+
+        //  ES6 允许使用'箭头' （=>）定义函数。
+
+        var f = v => v ;
+
+        //等同于
+
+        var f = function (v) {
+            return  v ;
+        };
+
+        //
+
+        var f = () => 5;  //无参  就用一个圆括号代表参数部分
+
+        //等同于
+
+        var  f = function () {
+            return  5 ;
+        };
+
+        var sum = (num1 , num2) => num1 + num2 ; //如果 箭头后半部分多于一行 ，就要用{}括起来
+        //等同于
+        var  sum = function (num1 , num2) {
+            return num1 + num2;
+        };
+
+        //如果函数返回一个对象 ， 必须在对象外面加上括号（），否则会报错
+        var getTempItem =  id => {id : id , name :"Temp"}; //报错
+        var getTempItem =  id => ({id : id ,name : "Timo"}); //不报错
+
+        /*
+        *
+        * 使用注意点
+
+            箭头函数有几个使用注意点。
+
+            （1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+
+            （2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+
+            （3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+
+            （4）不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
+        *
+        *
+        *
+        *
+        */
+
+    </script>
+</body>
+</html>

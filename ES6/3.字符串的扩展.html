@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>字符串的扩展</title>
+</head>
+<body>
+"\u0061"
+<script>
+
+    //1.字符串的Unicode表示法  JS允许采用 \uxxxx形式表示一个字符，其中xxxx表示字符的Unicode码点
+    "\u0061"  // 范围 \u0000  ~   \uFFFF
+
+    //2. codePointAt() JavaScript 内部，字符以 UTF-16 的格式储存，每个字符固定为2个字节。对于那些需要4个字节储存的字符（Unicode 码点大于0xFFFF的字符），JavaScript 会认为它们是两个字符。
+
+    var s = "𠮷";  //  码点是0x20BB7  ，UTF-16编码为 0xD842  0xDFB7 (十进制为55362 57271)
+
+    console.log(s.length);
+    console.log(s.charAt(0));
+    console.log(s.charAt(1));
+    console.log(s.charCodeAt(0));  // 55362
+    console.log(s.charCodeAt(1));   //57271
+
+    //3. 字符串的遍历器接口   for  of
+
+    for (let codePonint of 'abcd') {
+        console.log(codePonint);
+    }
+
+    //4. charAt()
+    var  char = 'abc'.charAt(0);
+    console.log(char); // a
+
+    //5. includes()  ,   startsWith()   ，  endsWith()  都支持第二个，参数
+
+    var string = "hello ES6 JavaScript";
+
+    console.log(string.startsWith('he'));
+    console.log(string.endsWith('pt'));
+    console.log(string.includes('ES6 '));
+
+    // startsWith(searchString: string, position?: number): boolean;
+    console.log(string.startsWith('llo',2));
+
+    // 6. repeat()
+
+    var  r = "a";
+    r.repeat(3);
+    console.log(r.repeat(3));  //aaa
+
+    // 7. padStart() 头部补全, padEnd() 尾部补全
+
+    var  string2 = 'x';
+    //两个参数 ： 字符串的长度  ， 用来补全的字符串    如果没有第二个参数，则默认补全空格
+    // 如果用来补全的字符串与原字符串，两者的长度之和超过了指定的最小长度，则会截去超出位数的补全字符串。
+    console.log(string2.padStart(5,'ab'));
+    console.log(string2.padEnd(10,'cd'));
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
